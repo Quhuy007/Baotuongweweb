@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bảo mật trang web</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #fbc2d8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            background: #ea9999;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgb(236, 234, 234);
+        }
+
+        .hidden-content {
+            display: none;
+            margin-top: 20px;
+            color: #f4f2f2;
+            font-weight: bold;
+        }
+
+        input {
+            padding: 10px;
+            width: 200px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #d17071;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #d17071;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .fuck {
+            font-size: 5rem;
+            margin: 20px 0;
+        }
+
+        /* Nút "Click có bất ngờ" lớn hơn */
+        #surpriseButton {
+            padding: 20px 40px;  /* Tăng kích thước đệm */
+            font-size: 1.8rem;   /* Tăng kích thước chữ */
+            background-color: #ff6347;  /* Màu nền nút */
+            color: white;
+            border: none;
+            border-radius: 10px;  /* Bo tròn các góc */
+            cursor: pointer;
+            transition: all 0.3s ease; /* Thêm hiệu ứng chuyển động */
+        }
+
+        #surpriseButton:hover {
+            background-color: #ff4500;  /* Màu nền thay đổi khi hover */
+            transform: scale(1.1);  /* Tăng kích thước nút khi hover */
+        }
+
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            display: none;
+            z-index: 1000;
+            max-width: 80vw;
+            max-height: 80vh;
+            overflow: hidden;
+        }
+
+        .popup h1 {
+            font-size: 2rem;
+            color: #d17071;
+            margin-bottom: 10px;
+        }
+
+        .popup button {
+            margin-top: 10px;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 999;
+        }
+
+        video {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="passwordContainer">
+        <h2>Nhập mật khẩu để tiếp tục</h2>
+        <input type="password" id="password" placeholder="Nhập mật khẩu">
+        <button onclick="checkPassword()">Xác nhận</button>
+        <p class="error-message" id="error">Sai mật khẩu rồi ngu ạ</p>
+    </div>
+    <div class="hidden-content" id="hiddenContent">
+        <div class="container">
+            <h1>Have a nice day</h1>
+            <div class="fuck">
+                🖕🖕🖕🖕🖕
+            </div>
+            <button id="surpriseButton" onclick="showMessage()">Click có bất ngờ to mày ơi</button>
+            <p id="message"></p>
+        </div>
+    </div>
+
+    <!-- Popup -->
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="popup">
+        <h1>Chúc mừng sinh nhật mày nha 🎉</h1>
+        <p style="color: #555; font-size: 1.2rem;">Mày là người đặc biệt nhất hôm nay! 🥳</p>
+        
+        <!-- Thêm video -->
+        <video controls autoplay>
+            <source src="Rickroll.mp4" type="video/mp4">
+            Trình duyệt của bạn không hỗ trợ video.
+        </video>
+
+        <button onclick="closePopup()">Đóng</button>
+    </div>
+
+    <script>
+        const correctPassword = "12345";
+
+        function checkPassword() {
+            const inputPassword = document.getElementById('password').value;
+            const errorMessage = document.getElementById('error');
+            const hiddenContent = document.getElementById('hiddenContent');
+            const passwordContainer = document.getElementById('passwordContainer');
+
+            if (inputPassword === correctPassword) {
+                errorMessage.style.display = "none";
+                hiddenContent.style.display = "block";
+                passwordContainer.style.display = "none";
+            } else {
+                errorMessage.style.display = "block";
+                hiddenContent.style.display = "none";
+            }
+        }
+
+        function showMessage() {
+            const overlay = document.getElementById('overlay');
+            const popup = document.getElementById('popup');
+            const surpriseButton = document.getElementById('surpriseButton');
+
+            // Hiển thị popup và overlay
+            overlay.style.display = "block";
+            popup.style.display = "block";
+
+            // Loại bỏ nút sau khi nhấn
+            surpriseButton.style.display = "none";
+        }
+
+        function closePopup() {
+            const overlay = document.getElementById('overlay');
+            const popup = document.getElementById('popup');
+
+            // Ẩn popup và overlay
+            overlay.style.display = "none";
+            popup.style.display = "none";
+        }
+    </script>
+</body>
+</html>

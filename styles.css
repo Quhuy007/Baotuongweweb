@@ -1,0 +1,49 @@
+body {
+    font-family: 'Times New Roman', Times, serif, sans-serif;
+    background: linear-gradient(to bottom, #ffccff, #ff99cc);
+    color: #333;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    padding: 20px;
+    margin-top: 50px;
+}
+
+h1 {
+    color: #ff0066;
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.cake {
+    font-size: 5rem;
+    margin: 20px 0;
+}
+
+button {
+    background-color: #ff6699;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+button:hover {
+    background-color: #ff3366;
+}
+
+#message {
+    margin-top: 20px;
+    font-size: 1.5rem;
+    color: #99004d;
+}
