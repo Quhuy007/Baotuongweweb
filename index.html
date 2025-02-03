@@ -1,203 +1,213 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>brtdybyquanghuy</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #fbc2d8;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Báo Tường – Tri Ân Thầy Cô Ngày 20/11</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+        background-color: #910610;
+        padding: 20px;
+        text-align: center;
+        color: white;
+        font-size: 2rem;
+    }
 
-        .container {
-            text-align: center;
-            padding: 20px;
-            background: #ea9999;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgb(236, 234, 234);
-        }
+    main {
+        padding: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 60px;
+    }
+    section {
+      margin-bottom: 20px;
+    }
+    
+    .media-container img, .media-container video {
+        max-width: 100%;
+        margin: 10px 0;
+        text-align: center;
+    }
+    h2 {
+      color: #a32424;
+      cursor: pointer;
+    }
+    .content {
+      display: none;
+      margin-top: 10px;
+    }
+    footer {
+      background-color: #b13636;
+      text-align: center;
+      padding: 10px;
+      color: white;
+      position: relative;
+      bottom: 0;
+    }
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #a93333;
+      text-align: center;
+      padding: 10px;
+      color: white;
+    }
+    .image {
+        cursor: pointer;
+    }
+    .modal { 
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+    }
+    .modal-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        height: 80%;
+        background-color: #fff;
+        padding: 20px;
+        border: 1px solid #ddd;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    .modal-content img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+    .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 24px;
+        cursor: pointer;
+    }
+  </style>
+  <script>
+    const images = document.querySelectorAll('.image');
 
-        .hidden-content {
-            display: none;
-            margin-top: 20px;
-            color: #f4f2f2;
-            font-weight: bold;
-        }
+    images.forEach((image) => {
+    image.addEventListener('click', () => {
+        const modal = document.createElement('div');
+        modal.classList.add('modal');
+        modal.innerHTML = `
+        <div class="modal-content">
+            <img src="${image.dataset.src}" alt="Hình minh họa">
+            <span class="close">&times;</span>
+        </div>
+        `;
+        document.body.appendChild(modal);
 
-        input {
-            padding: 10px;
-            width: 200px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
+        const close = modal.querySelector('.close');
+        close.addEventListener('click', () => {
+        modal.remove();
+        });
 
-        button {
-            padding: 10px 20px;
-            background-color: #d17071;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+        document.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.remove();
         }
-
-        button:hover {
-            background-color: #d17071;
-        }
-
-        .error-message {
-            color: red;
-            margin-top: 10px;
-            display: none;
-        }
-
-        .fuck {
-            font-size: 5rem;
-            margin: 20px 0;
-        }
-
-        /* Nút "Click có bất ngờ" lớn hơn */
-        #surpriseButton {
-            padding: 20px 40px;  /* Tăng kích thước đệm */
-            font-size: 1.8rem;   /* Tăng kích thước chữ */
-            background-color: #ff6347;  /* Màu nền nút */
-            color: white;
-            border: none;
-            border-radius: 10px;  /* Bo tròn các góc */
-            cursor: pointer;
-            transition: all 0.3s ease; /* Thêm hiệu ứng chuyển động */
-        }
-
-        #surpriseButton:hover {
-            background-color: #ff4500;  /* Màu nền thay đổi khi hover */
-            transform: scale(1.1);  /* Tăng kích thước nút khi hover */
-        }
-
-        .popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            display: none;
-            z-index: 1000;
-            max-width: 80vw;
-            max-height: 80vh;
-            overflow: hidden;
-        }
-
-        .popup h1 {
-            font-size: 2rem;
-            color: #d17071;
-            margin-bottom: 10px;
-        }
-
-        .popup button {
-            margin-top: 10px;
-        }
-
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: none;
-            z-index: 999;
-        }
-
-        video {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-    </style>
+        });
+    });
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+      const sections = document.querySelectorAll("h2");
+      sections.forEach(section => {
+        section.addEventListener("click", function () {
+         const content = this.nextElementSibling;
+            if (e.target === modal) {
+            modal.remove();
+            }
+            if (content.style.display === "block") {
+            content.style.display = "none";
+          } else {
+            content.style.display = "block";
+          }
+        });
+      });
+    });
+  </script>
 </head>
 <body>
-    <div class="container" id="passwordContainer">
-        <h2>Nhập mật khẩu để tiếp tục</h2>
-        <input type="password" id="password" placeholder="Nhập mật khẩu">
-        <button onclick="checkPassword()">Xác nhận</button>
-        <p class="error-message" id="error">Sai mật khẩu rồi ngu ạ</p>
-    </div>
-    <div class="hidden-content" id="hiddenContent">
-        <div class="container">
-            <h1> Con Quỳnh Ngu Vcl 🖕🏻🖕🏻🖕🏻🖕🏻🖕🏻🖕🏻</h1>
-            <div class="fuck">
-                🖕🖕🖕🖕🖕
-            </div>
-            <button id="surpriseButton" onclick="showMessage()">Đừng có click vào mày ơi :<<<<</button>
-            <p id="message"></p>
+  <header>
+    BÁO TƯỜNG – TRI ÂN THẦY CÔ NGÀY 20/11
+  </header>
+  
+  <main>
+    <section>
+      <h2>Giới Thiệu</h2>
+      <div class="content">
+        <p>Nhân dịp Ngày Nhà Giáo Việt Nam 20/11, trang web này được tạo ra nhằm tri ân và tôn vinh những đóng góp của thầy cô cho sự nghiệp giáo dục.</p>
+      </div>
+    </section>
+    <section>
+        <h2>Ý nghĩa:</h2>
+        <div class="content"> 
+            <P>Ngày 20/11 là dịp để các thế hệ học sinh bày tỏ lòng biết ơn sâu sắc đối với thầy cô giáo. 
+            Đây cũng là cơ hội để xã hội nhìn nhận và tôn vinh những đóng góp quan trọng của ngành giáo dục trong việc xây dựng và phát triển đất nước. 
+            Các hoạt động như tặng hoa, viết thư tri ân, tổ chức văn nghệ và làm báo tường thường được diễn ra trong ngày này để thể hiện tình cảm và sự kính trọng đối với những "người lái đò" thầm lặng.
+            Ngày Nhà giáo Việt Nam không chỉ là ngày lễ của ngành giáo dục mà còn là dịp để toàn xã hội thể hiện truyền thống hiếu học và tôn sư trọng đạo, những giá trị quý báu đã được gìn giữ qua nhiều thế hệ.
+            </p>
         </div>
-    </div>
-
-    <!-- Popup -->
-    <div class="overlay" id="overlay"></div>
-    <div class="popup" id="popup">
-        <h1>Chúc mừng sinh nhật mày nha 🎉</h1>
-        <p style="color: #555; font-size: 1.2rem;">Mày là người đặc biệt nhất hôm nay! 🥳</p>
         
-        <!-- Thêm video -->
-        <video controls autoplay>
-            <source src="Rickroll.mp4" type="video/mp4">
-            Trình duyệt của bạn không hỗ trợ video.
+    </section>
+    <section class="media-container">
+      <h2>Hình Ảnh và Video Minh Họa</h2>
+      <div class="content">
+        <img src="https://via.placeholder.com/800x400" alt="Hình minh họa" calss="img" data-src="https://via.placeholder.com/800x400">  >
+        <video controls>
+          <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+          Trình duyệt không hỗ trợ video.
         </video>
+      </div>
+    </section>
 
-        <button onclick="closePopup()">Đóng</button>
-    </div>
-
-    <script>
-        const correctPassword = "byquanghuy";
-
-        function checkPassword() {
-            const inputPassword = document.getElementById('password').value;
-            const errorMessage = document.getElementById('error');
-            const hiddenContent = document.getElementById('hiddenContent');
-            const passwordContainer = document.getElementById('passwordContainer');
-
-            if (inputPassword === correctPassword) {
-                errorMessage.style.display = "none";
-                hiddenContent.style.display = "block";
-                passwordContainer.style.display = "none";
-            } else {
-                errorMessage.style.display = "block";
-                hiddenContent.style.display = "none";
-            }
-        }
-
-        function showMessage() {
-            const overlay = document.getElementById('overlay');
-            const popup = document.getElementById('popup');
-            const surpriseButton = document.getElementById('surpriseButton');
-
-            // Hiển thị popup và overlay
-            overlay.style.display = "block";
-            popup.style.display = "block";
-
-            // Loại bỏ nút sau khi nhấn
-            surpriseButton.style.display = "none";
-        }
-
-        function closePopup() {
-            const overlay = document.getElementById('overlay');
-            const popup = document.getElementById('popup');
-
-            // Ẩn popup và overlay
-            overlay.style.display = "none";
-            popup.style.display = "none";
-        }
-    </script>
+    <section>
+      <h2>Lời Tri Ân</h2>
+      <div class="content">
+        <p>Trong cái lạnh chớm đông, bên những bản tin hàng ngày về tình hình dịch bệnh Covid đó đây thỉnh thoảng nghe cũng thót tim, những người học trò dẫu có đang ở phương nào, vẫn mãi nhớ và hướng về những Người Lái Đò.
+            Qua bao nhiêu năm, những trái tim - khối óc ấy vẫn miệt mài bên cạnh, mang đến cho biết bao thế hệ học sinh chúng em, những chiếc thuyền kiến thức, đưa biết bao chuyến đò về đến bến cùng.
+            Tất cả vẫn chưa là kết thúc, chúng em vẫn sẽ còn phải bước tiếp trên con đường này, có chông gai, có thử thách. Nhưng dường như đường dài ấy đã bớt đi phần nặng nhọc, vì chúng em biết rằng, phía sau vẫn luôn có thầy cô.
+            Chào mừng ngày Nhà giáo Việt Nam 20/11, mong thầy cô mãi tin yêu và hạnh phúc với con đường mình đã chọn.</p>
+      </div>
+    </section>
+    <section>
+      <h2>Bài Thơ Tri Ân</h2>
+      <div class="content" style="text-align: center ;" >
+        <p>Về trường mừng đón huân chương<br>
+            Gặp thầy gặp bạn tình thương dạt dào<br>
+            Lâng lâng cảm xúc dâng trào,<br>
+            Tóc thầy điểm bạc độ nào chẳng hay<br>
+            Sân trường xanh thắm chồi cây <br>
+            Phải chăng lá nhuộm tóc thầy của tôi<br>
+            Ra về lòng những bồi hồi<br>
+            Nguyện rằng luôn mãi là người trò ngoan.<br>
+        </p>
+      </div>
+    <section>
+  </main>
+  <footer>
+    Báo Tường Tri Ân Thầy Cô - Ngày 20/11
+    copyright: Quang Huy. Nhóm 1. Lớp : 12A3 ;Khóa 2024-2025
+  </footer>
 </body>
 </html>
