@@ -4,149 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Báo Tường – Tri Ân Thầy Cô Ngày 20/11</title>
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f9f9f9;
-      color: #333;
-      line-height: 1.6;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-        background-color: #910610;
-        padding: 20px;
-        text-align: center;
-        color: white;
-        font-size: 2rem;
-    }
-
-    main {
-        padding: 20px;
-        max-width: 800px;
-        margin: 0 auto;
-        background: white;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        margin-bottom: 60px;
-    }
-    section {
-      margin-bottom: 20px;
-    }
-    
-    .media-container img, .media-container video {
-        max-width: 100%;
-        margin: 10px 0;
-        text-align: center;
-    }
-    h2 {
-      color: #a32424;
-      cursor: pointer;
-    }
-    .content {
-      display: none;
-      margin-top: 10px;
-    }
-    footer {
-      background-color: #b13636;
-      text-align: center;
-      padding: 10px;
-      color: white;
-      position: relative;
-      bottom: 0;
-    }
-    footer {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      background-color: #a93333;
-      text-align: center;
-      padding: 10px;
-      color: white;
-    }
-    .image {
-        cursor: pointer;
-    }
-    .modal { 
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: 1;
-    }
-    .modal-content {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 80%;
-        height: 80%;
-        background-color: #fff;
-        padding: 20px;
-        border: 1px solid #ddd;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    }
-    .modal-content img {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
-    }
-    .close {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        font-size: 24px;
-        cursor: pointer;
-    }
-  </style>
-  <script>
-    const images = document.querySelectorAll('.image');
-
-    images.forEach((image) => {
-    image.addEventListener('click', () => {
-        const modal = document.createElement('div');
-        modal.classList.add('modal');
-        modal.innerHTML = `
-        <div class="modal-content">
-            <img src="${image.dataset.src}" alt="Hình minh họa">
-            <span class="close">&times;</span>
-        </div>
-        `;
-        document.body.appendChild(modal);
-
-        const close = modal.querySelector('.close');
-        close.addEventListener('click', () => {
-        modal.remove();
-        });
-
-        document.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.remove();
-        }
-        });
-    });
-    });
-    document.addEventListener("DOMContentLoaded", function () {
-      const sections = document.querySelectorAll("h2");
-      sections.forEach(section => {
-        section.addEventListener("click", function () {
-         const content = this.nextElementSibling;
-            if (e.target === modal) {
-            modal.remove();
-            }
-            if (content.style.display === "block") {
-            content.style.display = "none";
-          } else {
-            content.style.display = "block";
-          }
-        });
-      });
-    });
-  </script>
+  <script src="script.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
+
 <body>
   <header>
     BÁO TƯỜNG – TRI ÂN THẦY CÔ NGÀY 20/11
@@ -160,54 +21,37 @@
       </div>
     </section>
     <section>
-        <h2>Ý nghĩa:</h2>
-        <div class="content"> 
-            <P>Ngày 20/11 là dịp để các thế hệ học sinh bày tỏ lòng biết ơn sâu sắc đối với thầy cô giáo. 
-            Đây cũng là cơ hội để xã hội nhìn nhận và tôn vinh những đóng góp quan trọng của ngành giáo dục trong việc xây dựng và phát triển đất nước. 
-            Các hoạt động như tặng hoa, viết thư tri ân, tổ chức văn nghệ và làm báo tường thường được diễn ra trong ngày này để thể hiện tình cảm và sự kính trọng đối với những "người lái đò" thầm lặng.
-            Ngày Nhà giáo Việt Nam không chỉ là ngày lễ của ngành giáo dục mà còn là dịp để toàn xã hội thể hiện truyền thống hiếu học và tôn sư trọng đạo, những giá trị quý báu đã được gìn giữ qua nhiều thế hệ.
-            </p>
-        </div>
-        
+      <h2>Ý nghĩa:</h2>
+      <div class="content"> 
+        <p>Ngày 20/11 là dịp để các thế hệ học sinh bày tỏ lòng biết ơn sâu sắc đối với thầy cô giáo...</p>
+      </div>
     </section>
     <section class="media-container">
       <h2>Hình Ảnh và Video Minh Họa</h2>
       <div class="content">
-        <img src="https://via.placeholder.com/800x400" alt="Hình minh họa" calss="img" data-src="https://via.placeholder.com/800x400">  >
+        <img src="https://didongviet.vn/dchannel/wp-content/uploads/2023/11/anh-20-11-didongviet.jpg" alt="Hình minh họa" class="image" data-src="https://didongviet.vn/dchannel/wp-content/uploads/2023/11/anh-20-11-didongviet.jpg">
         <video controls>
-          <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+          <source src="video.mp4" type="video/mp4">
           Trình duyệt không hỗ trợ video.
         </video>
       </div>
     </section>
-
     <section>
       <h2>Lời Tri Ân</h2>
       <div class="content">
-        <p>Trong cái lạnh chớm đông, bên những bản tin hàng ngày về tình hình dịch bệnh Covid đó đây thỉnh thoảng nghe cũng thót tim, những người học trò dẫu có đang ở phương nào, vẫn mãi nhớ và hướng về những Người Lái Đò.
-            Qua bao nhiêu năm, những trái tim - khối óc ấy vẫn miệt mài bên cạnh, mang đến cho biết bao thế hệ học sinh chúng em, những chiếc thuyền kiến thức, đưa biết bao chuyến đò về đến bến cùng.
-            Tất cả vẫn chưa là kết thúc, chúng em vẫn sẽ còn phải bước tiếp trên con đường này, có chông gai, có thử thách. Nhưng dường như đường dài ấy đã bớt đi phần nặng nhọc, vì chúng em biết rằng, phía sau vẫn luôn có thầy cô.
-            Chào mừng ngày Nhà giáo Việt Nam 20/11, mong thầy cô mãi tin yêu và hạnh phúc với con đường mình đã chọn.</p>
+        <p>Trong cái lạnh chớm đông, bên những bản tin hàng ngày...</p>
       </div>
     </section>
     <section>
       <h2>Bài Thơ Tri Ân</h2>
-      <div class="content" style="text-align: center ;" >
-        <p>Về trường mừng đón huân chương<br>
-            Gặp thầy gặp bạn tình thương dạt dào<br>
-            Lâng lâng cảm xúc dâng trào,<br>
-            Tóc thầy điểm bạc độ nào chẳng hay<br>
-            Sân trường xanh thắm chồi cây <br>
-            Phải chăng lá nhuộm tóc thầy của tôi<br>
-            Ra về lòng những bồi hồi<br>
-            Nguyện rằng luôn mãi là người trò ngoan.<br>
-        </p>
+      <div class="content" style="text-align: center;">
+        <p>Về trường mừng đón huân chương...</p>
       </div>
-    <section>
+    </section>
   </main>
   <footer>
-    Báo Tường Tri Ân Thầy Cô - Ngày 20/11
-    copyright: Quang Huy. Nhóm 1. Lớp : 12A3 ;Khóa 2024-2025
+    Báo Tường Tri Ân Thầy Cô - Ngày 20/11<br>
+    Copyright: Quang Huy. Nhóm 1. Lớp 12A3 - Khóa 2024-2025
   </footer>
 </body>
 </html>
